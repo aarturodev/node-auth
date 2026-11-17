@@ -10,12 +10,7 @@ export const createAuthroutes = (
 
   router.post("/register", controller.register);
   router.post("/login", controller.login);
-
-  router.get("/protected", authMiddleware.validate, (_req, res) => {
-    res.json({
-      message: "You have access to this protected route",
-    });
-  });
+  router.get("/me", authMiddleware.validate, controller.getCurrentUser);
 
   return router;
 };

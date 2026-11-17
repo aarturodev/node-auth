@@ -1,3 +1,4 @@
+import { GetCurrentUserUseCase } from "./modules/auth/application/use-cases/get-current-user.use-case.js";
 import { LoginUserUseCase } from "./modules/auth/application/use-cases/login-user.use-case.js";
 import { RegisterUserUseCase } from "./modules/auth/application/use-cases/register-user.use-case.js";
 import { AuthController } from "./modules/auth/infrastructure/http/controllers/auth.controller.js";
@@ -31,9 +32,12 @@ const bootstrap = async (): Promise<void> => {
 
   const loginUserUseCase = new LoginUserUseCase(authRepository, tokenService);
 
+  const getCurrentUserUseCase = new GetCurrentUserUseCase(authRepository);
+
   const authController = new AuthController(
     registerUserUseCase,
     loginUserUseCase,
+    getCurrentUserUseCase,
   );
 
   const authMiddleware = new AuthMiddleware(tokenService);

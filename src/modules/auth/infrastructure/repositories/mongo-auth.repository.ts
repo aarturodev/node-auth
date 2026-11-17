@@ -12,6 +12,13 @@ import { UserMapper } from "../mappers/user.mapper.js";
 export class MongoAuthRepository implements AuthRepository {
   constructor(private readonly passwordHasher: PasswordHasher) {}
 
+  async findById(id: string): Promise<UserEntity> {
+    const document = await UserModel.findById(id);
+
+    if (!document) throw AuthError.userNotFound();
+    return UserMapper.toDomain(document);
+  }
+
   async register(data: RegisterUserData): Promise<UserEntity> {
     const userAlreadyExists = await UserModel.findOne({ email: data.email });
 

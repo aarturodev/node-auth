@@ -11,6 +11,12 @@ import type { PasswordHasher } from "../../domain/services/password-hasher.servi
 export class InMemoryAuthRepository implements AuthRepository {
   constructor(private readonly passwordHasher: PasswordHasher) {}
 
+  findById(id: string): Promise<UserEntity> {
+    const user = this.user.find((user) => user.id === id);
+    if (!user) throw AuthError.userNotFound();
+    return Promise.resolve(user);
+  }
+
   private readonly user: UserEntity[] = [];
 
   async register(data: RegisterUserData): Promise<UserEntity> {
