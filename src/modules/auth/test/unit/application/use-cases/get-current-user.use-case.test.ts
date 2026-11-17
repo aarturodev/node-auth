@@ -1,11 +1,11 @@
-import { UserEntity } from "../../domain/entities/user.entity.js";
+import { describe, expect, it } from "vitest";
+import { GetCurrentUserUseCase } from "../../../../application/use-cases/get-current-user.use-case.js";
+import { UserEntity } from "../../../../domain/entities/user.entity.js";
 import {
   AuthRepository,
-  type LoginUserData,
   type RegisterUserData,
-} from "../../domain/repositories/auth.repository.js";
-import { GetCurrentUserUseCase } from "./get-current-user.use-case.js";
-import { describe, expect, it } from "vitest";
+  type LoginUserData,
+} from "../../../../domain/repositories/auth.repository.js";
 
 class FakeAuthRepository extends AuthRepository {
   register(_data: RegisterUserData): Promise<UserEntity> {

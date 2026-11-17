@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { RegisterUserDto } from "./register-user.dto.js";
+import { RegisterUserDto } from "../../../../application/dtos/register-user.dto.js";
 
 describe("RegisterUserDto", () => {
   it("should create a valid DTO", () => {
@@ -39,7 +39,7 @@ describe("RegisterUserDto", () => {
 
     expect(result).toEqual({
       success: false,
-      error: "A valid email is  required",
+      error: "A valid email is required",
     });
   });
 

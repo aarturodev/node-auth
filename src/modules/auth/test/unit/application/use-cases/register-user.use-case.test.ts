@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
+import { RegisterUserUseCase } from "../../../../application/use-cases/register-user.use-case.js";
+import { UserEntity } from "../../../../domain/entities/user.entity.js";
 import {
   AuthRepository,
-  type LoginUserData,
   type RegisterUserData,
-} from "../../domain/repositories/auth.repository.js";
-import { UserEntity } from "../../domain/entities/user.entity.js";
-import { TokenService } from "../../domain/services/token.service.js";
-import { RegisterUserUseCase } from "./register-user.use-case.js";
+  type LoginUserData,
+} from "../../../../domain/repositories/auth.repository.js";
+import { TokenService } from "../../../../domain/services/token.service.js";
 
 class FakeAuthRepository extends AuthRepository {
   register(data: RegisterUserData): Promise<UserEntity> {
